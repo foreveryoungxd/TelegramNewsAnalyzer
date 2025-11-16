@@ -18,7 +18,31 @@ services:
       CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
     volumes:
       - kafka_kraft:/var/lib/kafka/data
+    networks:
+      - produce_telegram_messages_net
 
+  parser:
+    image: parser:base
+    container_name: telegram_parser
+    environment:
+      api_id: ${api_id}
+      api_hash: ${api_hash}
+      KAFKA_BOOTSTRAP_SERVERS: ${KAFKA_BOOTSTRAP_SERVERS}
+    depends_on:
+      kafka:
+        condition: service_started
+    volumes:
+      - ./parser:/app/parser
+    networks:
+      - produce_telegram_messages_net
+    command: >
+      sh -c "
+        uv run ./parser/parser_entrypoint.py
+      "
 
 volumes:
   kafka_kraft:
+
+networks:
+  produce_telegram_messages_net:
+    driver: bridge

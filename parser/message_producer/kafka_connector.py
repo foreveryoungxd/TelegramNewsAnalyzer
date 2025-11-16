@@ -45,7 +45,7 @@ class KafkaProducer:
             self.producer.poll(0)
 
             logger.info(
-                f"📤 Message sent to {topic}: {message.get('id', 'unknown')}"
+                f"📤 Message sent to {topic}: {message.get('text', 'unknown')}"
             )
 
         except Exception as e:

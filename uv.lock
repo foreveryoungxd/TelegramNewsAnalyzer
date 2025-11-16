@@ -497,24 +497,32 @@ wheels = [
 name = "telegramnewsanalyzer"
 version = "0.1.0"
 source = { editable = "." }
-dependencies = [
+
+[package.dev-dependencies]
+dev = [
     { name = "black" },
-    { name = "confluent-kafka" },
     { name = "flake8" },
     { name = "isort" },
     { name = "pre-commit" },
+]
+parser = [
+    { name = "confluent-kafka" },
     { name = "pydantic" },
     { name = "python-dotenv" },
     { name = "telethon" },
 ]
 
 [package.metadata]
-requires-dist = [
+
+[package.metadata.requires-dev]
+dev = [
     { name = "black", specifier = ">=25.9.0" },
-    { name = "confluent-kafka", specifier = ">=2.12.2" },
     { name = "flake8", specifier = ">=7.3.0" },
     { name = "isort", specifier = ">=7.0.0" },
     { name = "pre-commit", specifier = ">=4.4.0" },
+]
+parser = [
+    { name = "confluent-kafka", specifier = ">=2.12.2" },
     { name = "pydantic", specifier = ">=2.12.4" },
     { name = "python-dotenv", specifier = ">=1.2.1" },
     { name = "telethon", specifier = ">=1.42.0" },

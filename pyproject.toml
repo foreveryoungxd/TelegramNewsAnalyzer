@@ -4,16 +4,25 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = [
+dependencies = []
+
+[tool.uv]
+package = true
+
+[tool.setuptools]
+py-modules = ["parser"]
+
+[dependency-groups]
+dev = [
     "black>=25.9.0",
-    "confluent-kafka>=2.12.2",
     "flake8>=7.3.0",
     "isort>=7.0.0",
     "pre-commit>=4.4.0",
+]
+
+parser = [
+    "confluent-kafka>=2.12.2",
     "pydantic>=2.12.4",
     "python-dotenv>=1.2.1",
     "telethon>=1.42.0",
 ]
-
-[tool.uv]
-package = true
